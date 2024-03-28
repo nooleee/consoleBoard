@@ -12,6 +12,12 @@ public class User {
 		board = new ArrayList<>();
 	}
 	
+	public User(String id, String password, ArrayList<Board> board) {
+		this.id = id;
+		this.password = password;
+		this.board = board;
+	}
+	
 	// CRUD
 	public String getId() {
 		return this.id;
@@ -20,4 +26,7 @@ public class User {
 	public String getPassword() {
 		return this.password;
 	}
+	
+
+	
 }
