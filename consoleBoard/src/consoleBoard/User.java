@@ -13,5 +13,7 @@ public class User {
 	}
 	
 	// CRUD
-	
+	public String getId() {
+		return this.id;
+	}
 }
