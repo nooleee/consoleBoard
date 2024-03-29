@@ -1,14 +1,11 @@
 package consoleBoard;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 public class UserManager extends User {
 	private Random ran = new Random();
 	private ArrayList<User> list;
-	private Map<User, ArrayList<Board>> userData = new HashMap<>();	// userData = (password/list, password/list, ...)
 	
 	public UserManager() {
 		list = new ArrayList<>();
@@ -30,8 +27,10 @@ public class UserManager extends User {
 			code = ran.nextInt(9000) + 1000;
 			
 			User user = findUserByUserCode(code);
-			
+			if(user.getCode() == 0)
+				break;
 		}
+		return code;
 	}
 	
 	public User findUserByUserCode(int code) {
