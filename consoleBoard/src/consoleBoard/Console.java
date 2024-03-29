@@ -1,5 +1,6 @@
 package consoleBoard;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -174,6 +175,10 @@ public class Console {
 		String title = inputString("바꿀 제목");
 		
 		boardManager.modifyTitle(num, title);
+		
+		ArrayList<Board> boards = userManager.getUserByUserCode(log).getBoard();
+		boards.get(num-1).setTitle(title);
+		
 	}
 	
 	private void modifyContents() {
@@ -183,6 +188,8 @@ public class Console {
 		String contents = inputString("바꿀 내용");
 		
 		boardManager.modifyContents(num, contents);
+		ArrayList<Board> boards = userManager.getUserByUserCode(log).getBoard();
+		boards.get(num-1).setContents(contents);
 	}
 	
 	private void runSubModifyMenu(int sel) {
