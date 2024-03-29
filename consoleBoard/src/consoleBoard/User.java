@@ -18,10 +18,11 @@ public class User {
 		board = new ArrayList<>();
 	}
 	
-	public User(String id, String password, ArrayList<Board> board) {
+	public User(String id, String password, ArrayList<Board> board, int code) {
 		this.id = id;
 		this.password = password;
 		this.board = board;
+		this.code = code;
 	}
 	
 	// CRUD
@@ -43,7 +44,7 @@ public class User {
 	
 	
 	public User clone() {
-		return new User(this.id, this.password, this.board);
+		return new User(this.id, this.password, this.board, this.code);
 	}
 	
 }
