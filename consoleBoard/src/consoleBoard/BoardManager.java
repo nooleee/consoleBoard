@@ -18,6 +18,14 @@ public class BoardManager {
 		return board.clone();
 	}
 	
+	public boolean findBoardByTitle(String title) {
+		for(Board board : list) {
+			if(board.getTitle().equals(title))
+				return true;
+		}
+		return false;
+	}
+	
 	public void modifyTitle() {
 		
 	}
