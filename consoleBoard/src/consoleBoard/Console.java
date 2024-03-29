@@ -178,7 +178,7 @@ public class Console {
 		
 		ArrayList<Board> boards = userManager.getUserByUserCode(log).getBoard();
 		boards.get(num-1).setTitle(title);
-		
+		System.out.println("제목 수정 완료");
 	}
 	
 	private void modifyContents() {
@@ -190,6 +190,7 @@ public class Console {
 		boardManager.modifyContents(num, contents);
 		ArrayList<Board> boards = userManager.getUserByUserCode(log).getBoard();
 		boards.get(num-1).setContents(contents);
+		System.out.println("내용 수정 완료");
 	}
 	
 	private void runSubModifyMenu(int sel) {
@@ -212,6 +213,15 @@ public class Console {
 		System.out.println(user);
 	}
 
+	private void delete() {
+		printLogBoard();
+		int num = inputNumber("삭제를 원하는 게시물 번호");
+		boardManager.deleteBoard(num);
+	}
+	
+	private void checkBoard() {
+		
+	}
 	
 	private void runBoardMenu(int choice) {
 		if(choice < 0 || choice > 4)
@@ -221,8 +231,10 @@ public class Console {
 			add();
 		else if(choice == MODIFY)
 			modify();
-//		else if(choice == DELETE)
-//		else if(choice == CHECK_BOARD)
+		else if(choice == DELETE)
+			delete();
+		else if(choice == CHECK_BOARD)
+			checkBoard();
 		else if(choice == EXIT)
 			return;
 		
