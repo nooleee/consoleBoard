@@ -33,6 +33,10 @@ public class User {
 		return this.password;
 	}
 	
+	public int getCode() {
+		return this.code;
+	}
+	
 	public ArrayList<Board> getBoard() {
 		return this.board;
 	}
