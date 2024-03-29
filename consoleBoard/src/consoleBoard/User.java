@@ -6,6 +6,10 @@ public class User {
 	private String id, password;
 	private ArrayList<Board> board;
 	
+	public User() {
+		
+	}
+	
 	public User(String id, String password) {
 		this.id = id;
 		this.password = password;
