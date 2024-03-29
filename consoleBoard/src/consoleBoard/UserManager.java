@@ -30,9 +30,11 @@ public class UserManager {
 		return false;
 	}
 	
-//	public boolean deleteUser(User user) {
-//		
-//	}
+	public boolean deleteUser(User user) {
+		String userId = user.getId();
+		User target = getUserByUserId(userId);
+		return list.remove(target);
+	}
 	
 	public User getUserByUserId(String id) {
 		for(User user : list) {
