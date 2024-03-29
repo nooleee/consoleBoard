@@ -11,4 +11,8 @@ public class Board {
 	public String getTitle() {
 		return this.title;
 	}
+	
+	public String getContents() {
+		return this.contents;
+	}
 }
