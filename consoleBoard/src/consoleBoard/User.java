@@ -3,6 +3,7 @@ package consoleBoard;
 import java.util.ArrayList;
 
 public class User {
+	private int code;
 	private String id, password;
 	private ArrayList<Board> board;
 	
@@ -10,9 +11,10 @@ public class User {
 		
 	}
 	
-	public User(String id, String password) {
+	public User(String id, String password, int code) {
 		this.id = id;
 		this.password = password;
+		this.code = code;
 		board = new ArrayList<>();
 	}
 	
