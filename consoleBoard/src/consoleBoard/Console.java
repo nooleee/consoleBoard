@@ -70,6 +70,8 @@ public class Console {
 			User user = userManager.createUser(id, password);
 			printWelcomeMessage(user);
 		}
+		else
+			System.err.println("이미 등록된 아이디입니다.");
 	}
 	
 	private void printWelcomeMessage(User User) {
