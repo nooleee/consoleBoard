@@ -25,6 +25,10 @@ public class Console {
 		
 	}
 	
+	private boolean checkLog() {
+		return log == -1 ? true : false;
+	}
+	
 	private void printStatus() {
 		int UserSize = userManager.getUserSize();
 		int BoardSize = boardManager.getBoardSize();
@@ -113,20 +117,34 @@ public class Console {
 		log = -1;
 		System.out.println("로그아웃 되었습니다.");
 	}
+	
+	private void board() {
+		printBoardMenu();
+		int choice = inputNumber("선택");
+		runBoardMenu(choice);
+	}
+	
+	private void printBoardMenu() {
+		System.out.println("[1]추가하기");
+		System.out.println("[2]수정하기");
+		System.out.println("[3]삭제하기");
+		System.out.println("[4]내용확인");
+	}
 
 	private void runMenu(int select) {
 		if(select < 0 || select > 6)
 			return;
 		
-		if(select == JOIN)
+		if(select == JOIN && checkLog())
 			join();
-		else if(select == LEAVE)
+		else if(select == LEAVE && !checkLog())
 			leave();
-		else if(select == LOGIN)
+		else if(select == LOGIN && checkLog())
 			login();
 		else if(select == LOGOUT)
 			logout();
-//		else if(select == BOARD)
+		else if(select == BOARD && !checkLog())
+			board();
 //		else if(select == FILE)
 //		else if(select == EXIT)
 			isRun = false;
