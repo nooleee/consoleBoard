@@ -16,7 +16,7 @@ public class BoardManager extends Board {
 	
 	public Board createBoard(String title, String contents, int code) {
 		Board board = new Board(title, contents, code);
-		boardData.put(count, board);
+		boardData.put(count ++, board);
 		return board.clone();
 	}
 	
@@ -66,6 +66,14 @@ public class BoardManager extends Board {
 	public void deleteBoard(Board board) {
 		for(int i = 0; i < count; i++) {
 			if(boardData.get(i).equals(board))
+				boardData.remove(i);
+		}
+	}
+	
+	public void deleteBoardAll(int code) {
+		for(int i = 0; i < count; i++) {
+			Board target = boardData.get(i);
+			if(target.getCode() == code)
 				boardData.remove(i);
 		}
 	}
