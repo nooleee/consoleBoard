@@ -15,4 +15,8 @@ public class Board {
 	public String getContents() {
 		return this.contents;
 	}
+	
+	public Board clone() {
+		return new Board(this.title, this.contents);
+	}
 }
