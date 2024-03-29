@@ -8,6 +8,11 @@ public class UserManager {
 	private ArrayList<User> list;
 	private Map<String, ArrayList<Board>> userData = new HashMap<>();	// userData = (password/list, password/list, ...)
 	
+	public UserManager() {
+		list = new ArrayList<>();
+		
+	}
+	
 	public User createUser(String id, String password) {
 		if(!findUserByUserId(id)) {
 			User user = new User(id, password);
@@ -23,6 +28,18 @@ public class UserManager {
 				return true;
 		}
 		return false;
+	}
+	
+//	public boolean deleteUser(User user) {
+//		
+//	}
+	
+	public User getUserByUserId(String id) {
+		for(User user : list) {
+			if(user.getId().equals(id))
+				return user;
+		}
+		return new User();
 	}
 	
 	public ArrayList<User> findUserAll() {
