@@ -6,10 +6,16 @@ import java.util.Map;
 
 public class BoardManager {
 	private ArrayList<Board> list;
-	private Map<Board, String> boardData = new HashMap<>(); // boardData = (title/contents, title/contents, ..)
+	private Map<String, Board> boardData = new HashMap<>(); // boardData = (title/contents, title/contents, ..)
 	
 	public BoardManager() {
 		list = new ArrayList<>();
+	}
+	
+	public Board createBoard(String title, String contents) {
+		Board board = new Board(title, contents);
+		list.add(board);
+		return board.clone();
 	}
 	
 	public void modifyTitle() {
