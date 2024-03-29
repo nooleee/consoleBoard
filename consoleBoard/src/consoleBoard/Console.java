@@ -1,6 +1,9 @@
 package consoleBoard;
 
+import java.util.Scanner;
+
 public class Console {
+	private Scanner scan = new Scanner(System.in);
 	private UserManager userManager = new UserManager();
 	private BoardManager boardManager = new BoardManager();
 	
@@ -21,10 +24,23 @@ public class Console {
 		System.out.println("[0]종료");
 	}
 	
+	private int inputNumber(String messege) {
+		int number = -1;
+		System.out.println(messege + " : ");
+		try {
+			String input = scan.next();
+			number = Integer.parseInt(input);
+		} catch (Exception e) {
+			System.err.println("숫자만 입력 가능합니다.");
+		}
+		return number;
+	}
+	
 	public void run() {
 //		printBoard();
 		while(true) {
 			printMenu();
+			int select = inputNumber("선택");
 		}
 	}
 }
