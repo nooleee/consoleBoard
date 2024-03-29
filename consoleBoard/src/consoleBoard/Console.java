@@ -24,6 +24,16 @@ public class Console {
 		
 	}
 	
+	private void printStatus() {
+		int UserSize = userManager.getUserSize();
+		int BoardSize = boardManager.getBoardSize();
+		String status = String.format("User size : %d\nBoard size : %d", UserSize, BoardSize);
+
+		System.out.println("------------");
+		System.out.println(status);
+		System.out.println("log : " + log);
+	}
+	
 	private void printMenu() {
 		System.out.println("[1]회원가입");
 		System.out.println("[2]회원탈퇴");
@@ -61,6 +71,7 @@ public class Console {
 	}
 	
 	public void run() {
+		printStatus();
 //		printBoard();
 		while(isRun) {
 			printMenu();
