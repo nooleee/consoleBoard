@@ -30,6 +30,7 @@ public class UserManager extends User {
 			code = ran.nextInt(9000) + 1000;
 			
 			User user = findUserByUserCode(code);
+			
 		}
 	}
 	
@@ -50,14 +51,14 @@ public class UserManager extends User {
 	}
 	
 	public boolean deleteUser(User user) {
-		String userId = user.getId();
-		User target = getUserByUserId(userId);
+		int code = user.getCode();
+		User target = getUserByUserCode(code);
 		return list.remove(target);
 	}
 	
-	public User getUserByUserId(String id) {
+	public User getUserByUserCode(int code) {
 		for(User user : list) {
-			if(user.getId().equals(id))
+			if(user.getCode() == code)
 				return user;
 		}
 		return new User();
