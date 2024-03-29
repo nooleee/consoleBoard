@@ -42,7 +42,7 @@ public class UserManager extends User {
 		return new User();
 	} 
 	
-	private boolean findUserByUserId(String id) {
+	public boolean findUserByUserId(String id) {
 		for(User user : list) {
 			if(user.getId().equals(id))
 				return true;
@@ -59,6 +59,14 @@ public class UserManager extends User {
 	public User getUserByUserCode(int code) {
 		for(User user : list) {
 			if(user.getCode() == code)
+				return user;
+		}
+		return new User();
+	}
+	
+	public User findUserByPassword(String password) {
+		for(User user : list) {
+			if(user.getPassword().equals(password))
 				return user;
 		}
 		return new User();
