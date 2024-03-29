@@ -2,6 +2,7 @@ package consoleBoard;
 
 import java.util.Scanner;
 
+
 public class Console {
 	private Scanner scan = new Scanner(System.in);
 	private UserManager userManager = new UserManager();
@@ -60,12 +61,29 @@ public class Console {
 		System.out.println(messege + " : ");
 		return scan.next();
 	}
+	
+	private void join() {
+		String id = inputString("id");
+		String password = inputString("password");
+		
+		if(!userManager.findUserByUserId(id)) {
+			User user = userManager.createUser(id, password);
+			printWelcomeMessage(user);
+		}
+	}
+	
+	private void printWelcomeMessage(User User) {
+		String message = User.getCode() != 0 ? String.format("%s(%d) 회원님 환영합니다.", User.getId(), User.getCode())
+				: "회원가입 실패";
+		System.out.println(message);
+	}
 
 	private void runMenu(int select) {
 		if(select < 0 || select > 6)
 			return;
 		
 		if(select == JOIN)
+			join();
 //		else if(select == LEAVE)
 //		else if(select == LOGIN)
 //		else if(select == LOGOUT)
