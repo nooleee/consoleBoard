@@ -55,6 +55,11 @@ public class Console {
 		}
 		return number;
 	}
+	
+	private String inputString(String messege) {
+		System.out.println(messege + " : ");
+		return scan.next();
+	}
 
 	private void runMenu(int select) {
 		if(select < 0 || select > 6)
