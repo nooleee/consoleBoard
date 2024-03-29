@@ -6,11 +6,21 @@ public class Console {
 	private Scanner scan = new Scanner(System.in);
 	private UserManager userManager = new UserManager();
 	private BoardManager boardManager = new BoardManager();
+	private boolean isRun;
+	
+	private final int JOIN = 1;
+	private final int LEAVE = 2;
+	private final int LOGIN = 3;
+	private final int LOGOUT = 4;
+	private final int BOARD = 5;
+	private final int FILE = 6;
+	private final int EXIT = 0;
 	
 	private int log;
 	
 	public Console() {
 		log = -1;
+		isRun = true;
 		
 	}
 	
@@ -35,12 +45,27 @@ public class Console {
 		}
 		return number;
 	}
+
+	private void runMenu(int select) {
+		if(select < 0 || select > 6)
+			return;
+		
+		if(select == JOIN)
+//		else if(select == LEAVE)
+//		else if(select == LOGIN)
+//		else if(select == LOGOUT)
+//		else if(select == BOARD)
+//		else if(select == FILE)
+//		else if(select == EXIT)
+			isRun = false;
+	}
 	
 	public void run() {
 //		printBoard();
-		while(true) {
+		while(isRun) {
 			printMenu();
 			int select = inputNumber("선택");
+			runMenu(select);
 		}
 	}
 }
