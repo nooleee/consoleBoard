@@ -7,4 +7,8 @@ public class Board {
 		this.title = title;
 		this.contents = contents;
 	}
+	
+	public String getTitle() {
+		return this.title;
+	}
 }
