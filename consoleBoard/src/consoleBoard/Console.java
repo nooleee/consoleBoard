@@ -143,8 +143,24 @@ public class Console {
 		user.getBoard().add(new Board(title, contents, log));
 		Board board = new Board(title, contents, log);
 		boardManager.createBoard(board);
+		
+		printBoard();
+		System.out.println("게시물 등록 완료");
 	}
 	
+	private void printBoard() {
+		System.out.println("=============");
+		for(int i = 0; i < boardManager.getBoardSize(); i++) {
+			Board target = boardManager.getBoardAll().get(i+1);
+			System.out.printf("[%d] ", i+1);
+			System.out.println(target);
+		}
+		System.out.println("=============");
+	}
+	
+	private void modify() {
+		
+	}
 
 	
 	private void runBoardMenu(int choice) {
@@ -153,7 +169,8 @@ public class Console {
 		
 		if(choice == ADD)
 			add();
-//		else if(choice == MODIFY)
+		else if(choice == MODIFY)
+			modify();
 //		else if(choice == DELETE)
 //		else if(choice == CHECK_BOARD)
 		else if(choice == EXIT)
