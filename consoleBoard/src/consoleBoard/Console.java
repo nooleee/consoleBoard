@@ -22,6 +22,9 @@ public class Console {
 	private final int DELETE = 3;
 	private final int CHECK_BOARD = 4;
 	
+	private final int MODIFY_TITLE = 1;
+	private final int MODIFY_CONTENTS = 2;
+	
 	private int log;
 	
 	public Console() {
@@ -144,11 +147,11 @@ public class Console {
 		Board board = new Board(title, contents, log);
 		boardManager.createBoard(board);
 		
-		printBoard();
+		printBoardAll();
 		System.out.println("게시물 등록 완료");
 	}
 	
-	private void printBoard() {
+	private void printBoardAll() {
 		System.out.println("=============");
 		for(int i = 0; i < boardManager.getBoardSize(); i++) {
 			Board target = boardManager.getBoardAll().get(i+1);
@@ -159,7 +162,37 @@ public class Console {
 	}
 	
 	private void modify() {
+		printSubModifyMenu();
+		int sel = inputNumber("선택");
+		runSubModifyMenu(sel);
+	}
+	
+	private void modifyTitle() {
+		printLogBoard();
+		int num = inputNumber("수정을 원하는 게시물 번호");
 		
+		String title = inputString("바꿀 제목");
+		
+		boardManager.modifyTitle(num, title);
+	}
+	
+	private void runSubModifyMenu(int sel) {
+		if(sel < 1 || sel > 2)
+			return;
+		
+		if(sel == MODIFY_TITLE)
+			modifyTitle();
+//		else if(sel == MODIFY_CONTENTS)
+	}
+	
+	private void printSubModifyMenu() {
+		System.out.println("[1]제목수정");
+		System.out.println("[2]내용수정");
+	}
+	
+	private void printLogBoard() {
+		User user = userManager.getUserByUserCode(log);
+		System.out.println(user);
 	}
 
 	
