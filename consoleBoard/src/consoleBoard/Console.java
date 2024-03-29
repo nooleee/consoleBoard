@@ -79,6 +79,17 @@ public class Console {
 				: "회원가입 실패";
 		System.out.println(message);
 	}
+	
+	private void leave() {
+		String password = inputString("비밀번호 확인");
+		User user = userManager.findUserByPassword(password);
+		if(user.getCode() != 0) {
+			userManager.deleteUser(user);
+			System.out.println("회원탈퇴 완료");
+		}
+		else
+			System.err.println("비밀번호를 다시 확인하세요");
+	}
 
 	private void runMenu(int select) {
 		if(select < 0 || select > 6)
@@ -86,7 +97,8 @@ public class Console {
 		
 		if(select == JOIN)
 			join();
-//		else if(select == LEAVE)
+		else if(select == LEAVE)
+			leave();
 //		else if(select == LOGIN)
 //		else if(select == LOGOUT)
 //		else if(select == BOARD)
