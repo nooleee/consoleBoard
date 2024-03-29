@@ -35,17 +35,6 @@ public class User {
 		return this.board;
 	}
 	
-	public void modifyTitle() {
-		
-	}
-	
-	public void modifyContents() {
-		
-	}
-	
-	public void deleteBoard() {
-		
-	}
 	
 	public User clone() {
 		return new User(this.id, this.password, this.board);
