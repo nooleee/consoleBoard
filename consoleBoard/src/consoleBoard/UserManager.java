@@ -14,6 +14,7 @@ public class UserManager {
 			list.add(user);
 			return user.clone();
 		}
+		return new User();
 	}
 	
 	private boolean findUserByUserId(String id) {
