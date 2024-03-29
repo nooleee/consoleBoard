@@ -90,6 +90,29 @@ public class Console {
 		else
 			System.err.println("비밀번호를 다시 확인하세요");
 	}
+	
+	private void login() {
+		String id = inputString("id");
+		String password = inputString("password");
+		int code = 0;
+		
+		for(User user : userManager.findUserAll()) {
+			if(user.getId().equals(id) && user.getPassword().equals(password))
+				code = user.getCode();
+		}
+		
+		if(code != 0) {
+			log = code;
+			System.out.println("로그인 완료");
+		}
+		else
+			System.err.println("회원 정보를 확인해주세요.");
+	}
+	
+	private void logout() {
+		log = -1;
+		System.out.println("로그아웃 되었습니다.");
+	}
 
 	private void runMenu(int select) {
 		if(select < 0 || select > 6)
@@ -99,8 +122,10 @@ public class Console {
 			join();
 		else if(select == LEAVE)
 			leave();
-//		else if(select == LOGIN)
-//		else if(select == LOGOUT)
+		else if(select == LOGIN)
+			login();
+		else if(select == LOGOUT)
+			logout();
 //		else if(select == BOARD)
 //		else if(select == FILE)
 //		else if(select == EXIT)
