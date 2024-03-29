@@ -44,6 +44,10 @@ public class UserManager {
 		return new User();
 	}
 	
+	public int getUserSize() {
+		return this.list.size();
+	}
+	
 	public ArrayList<User> findUserAll() {
 		ArrayList<User> copy = new ArrayList<>();
 		for(User user : list) {
