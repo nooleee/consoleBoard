@@ -3,24 +3,43 @@ package consoleBoard;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
-public class UserManager {
+public class UserManager extends User {
+	private Random ran = new Random();
 	private ArrayList<User> list;
-	private Map<String, ArrayList<Board>> userData = new HashMap<>();	// userData = (password/list, password/list, ...)
+	private Map<User, ArrayList<Board>> userData = new HashMap<>();	// userData = (password/list, password/list, ...)
 	
 	public UserManager() {
 		list = new ArrayList<>();
-		
 	}
 	
 	public User createUser(String id, String password) {
+		int code = generateUserCode();
 		if(!findUserByUserId(id)) {
-			User user = new User(id, password);
+			User user = new User(id, password, code);
 			list.add(user);
 			return user.clone();
 		}
 		return new User();
 	}
+	
+	private int generateUserCode() {
+		int code = 0;
+		while(true) {
+			code = ran.nextInt(9000) + 1000;
+			
+			User user = findUserByUserCode(code);
+		}
+	}
+	
+	public User findUserByUserCode(int code) {
+		for(User user : list) {
+			if(user.getCode() == code)
+				return user.clone();
+		}
+		return new User();
+	} 
 	
 	private boolean findUserByUserId(String id) {
 		for(User user : list) {
