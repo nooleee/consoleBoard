@@ -52,7 +52,15 @@ public class BoardManager extends Board {
 	}
 	
 	public void modifyContents(int code, String contents) {
+		String title = "";
+		for(int i = 0; i < count; i++) {
+			Board target = boardData.get(i);
+			if(target.getCode() == code)
+				title = target.getTitle();
+		}
 		
+		Board newBoard = new Board(title, contents, code);
+		boardData.replace(code, boardData.get(code), newBoard);
 	}
 	
 	public void deleteBoard(int code) {
