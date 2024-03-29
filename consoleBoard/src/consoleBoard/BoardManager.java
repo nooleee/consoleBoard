@@ -63,9 +63,13 @@ public class BoardManager extends Board {
 		boardData.replace(code, boardData.get(code), newBoard);
 	}
 	
-	public void deleteBoard(int code) {
-		
+	public void deleteBoard(Board board) {
+		for(int i = 0; i < count; i++) {
+			if(boardData.get(i).equals(board))
+				boardData.remove(i);
+		}
 	}
+	
 	
 	public int getBoardSize() {
 		return count;
