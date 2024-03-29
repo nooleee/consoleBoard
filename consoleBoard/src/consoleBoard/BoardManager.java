@@ -26,6 +26,14 @@ public class BoardManager {
 		return false;
 	}
 	
+	public Board getBoardByTilte(String title) {
+		for(Board board : list) {
+			if(board.getTitle().equals(title))
+				return board;
+		}
+		return new Board();
+	}
+	
 	public void modifyTitle() {
 		
 	}
