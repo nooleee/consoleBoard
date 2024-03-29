@@ -176,13 +176,23 @@ public class Console {
 		boardManager.modifyTitle(num, title);
 	}
 	
+	private void modifyContents() {
+		printLogBoard();
+		int num = inputNumber("수정을 원하는 게시물 번호");
+		
+		String contents = inputString("바꿀 내용");
+		
+		boardManager.modifyContents(num, contents);
+	}
+	
 	private void runSubModifyMenu(int sel) {
 		if(sel < 1 || sel > 2)
 			return;
 		
 		if(sel == MODIFY_TITLE)
 			modifyTitle();
-//		else if(sel == MODIFY_CONTENTS)
+		else if(sel == MODIFY_CONTENTS)
+			modifyContents();
 	}
 	
 	private void printSubModifyMenu() {
