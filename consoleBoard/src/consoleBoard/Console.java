@@ -17,6 +17,11 @@ public class Console {
 	private final int FILE = 6;
 	private final int EXIT = 0;
 	
+	private final int ADD = 1;
+	private final int MODIFY = 2;
+	private final int DELETE = 3;
+	private final int CHECK_BOARD = 4;
+	
 	private int log;
 	
 	public Console() {
@@ -129,6 +134,23 @@ public class Console {
 		System.out.println("[2]수정하기");
 		System.out.println("[3]삭제하기");
 		System.out.println("[4]내용확인");
+		System.out.println("[0]종료");
+	}
+	
+
+	
+	private void runBoardMenu(int choice) {
+		if(choice < 0 || choice > 4)
+			return;
+		
+		if(choice == ADD)
+			add();
+//		else if(choice == MODIFY)
+//		else if(choice == DELETE)
+//		else if(choice == CHECK_BOARD)
+		else if(choice == EXIT)
+			return;
+		
 	}
 
 	private void runMenu(int select) {
