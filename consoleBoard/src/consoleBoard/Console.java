@@ -27,7 +27,6 @@ public class Console {
 	public Console() {
 		log = -1;
 		isRun = true;
-		
 	}
 	
 	private boolean checkLog() {
@@ -137,6 +136,15 @@ public class Console {
 		System.out.println("[0]종료");
 	}
 	
+	private void add() {
+		User user = userManager.findUserByUserCode(log);
+		String title = inputString("제목");
+		String contents = inputString("내용");
+		user.getBoard().add(new Board(title, contents, log));
+		Board board = new Board(title, contents, log);
+		boardManager.createBoard(board);
+	}
+	
 
 	
 	private void runBoardMenu(int choice) {
@@ -168,14 +176,14 @@ public class Console {
 		else if(select == BOARD && !checkLog())
 			board();
 //		else if(select == FILE)
-//		else if(select == EXIT)
+		else if(select == EXIT)
 			isRun = false;
 	}
 	
 	public void run() {
-		printStatus();
 //		printBoard();
 		while(isRun) {
+			printStatus();
 			printMenu();
 			int select = inputNumber("선택");
 			runMenu(select);
