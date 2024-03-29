@@ -22,6 +22,10 @@ public class Board {
 		return this.contents;
 	}
 	
+	public int getCode() {
+		return this.code;
+	}
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -30,8 +34,15 @@ public class Board {
 		this.contents = contents;
 	}
 	
-	
 	public Board clone() {
 		return new Board(this.title, this.contents, this.code);
+	}
+	
+	@Override
+	public String toString() {
+		String info = "";
+			info += title + " : " + contents;
+			info += "\n";
+		return info;
 	}
 }

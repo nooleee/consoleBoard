@@ -1,6 +1,5 @@
 package consoleBoard;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,13 +10,19 @@ public class BoardManager extends Board {
 	
 	public BoardManager() {
 //		list = new ArrayList<>();
-		count =1;
 	}
 	
-	public Board createBoard(String title, String contents, int code) {
-		Board board = new Board(title, contents, code);
-		boardData.put(count ++, board);
+	public int getCount() {
+		return this.count;
+	}
+	
+	public Board createBoard(Board board) {
+		boardData.put(++ count, board);
 		return board.clone();
+	}
+	
+	public Map<Integer, Board> getBoardAll() {
+		return boardData;
 	}
 	
 	public boolean findBoardByTitle(int code) {
@@ -40,11 +45,8 @@ public class BoardManager extends Board {
 	
 	public void modifyTitle(int code, String title) {
 		String contents = "";
-		for(int i = 0; i < count; i++) {
-			Board target = boardData.get(i);
-			if(target.getCode() == code)
-				contents = target.getContents();
-		}
+		Board target = boardData.get(code);
+		contents = target.getContents();
 		
 		
 		Board newBoard = new Board(title, contents, code);
@@ -53,11 +55,8 @@ public class BoardManager extends Board {
 	
 	public void modifyContents(int code, String contents) {
 		String title = "";
-		for(int i = 0; i < count; i++) {
-			Board target = boardData.get(i);
-			if(target.getCode() == code)
-				title = target.getTitle();
-		}
+		Board target = boardData.get(code);
+		title = target.getTitle();
 		
 		Board newBoard = new Board(title, contents, code);
 		boardData.replace(code, boardData.get(code), newBoard);
@@ -78,8 +77,18 @@ public class BoardManager extends Board {
 		}
 	}
 	
+//	public Map<Integer, Board> getBoardAll() {
+//		Map<Integer, Board> copy = new HashMap<>();
+//		for(int i = 0; i < count; i++) {
+//			Board board = boardData.get(i+1);
+//			copy.put;
+//		}
+//		return copy;
+//	}
 	
 	public int getBoardSize() {
 		return count;
 	}
+	
+
 }

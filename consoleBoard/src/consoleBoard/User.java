@@ -8,7 +8,6 @@ public class User {
 	private ArrayList<Board> board;
 	
 	public User() {
-		
 	}
 	
 	public User(String id, String password, int code) {
@@ -42,9 +41,26 @@ public class User {
 		return this.board;
 	}
 	
+	public int getBoardSize() {
+		return board.size();
+	}
+	
 	
 	public User clone() {
 		return new User(this.id, this.password, this.board, this.code);
+	}
+	
+	@Override
+	public String toString() {
+		String info = String.format("%s(%d)\n", this.id, this.code);
+		
+		for(int i = 0; i < board.size(); i++) {
+			info += "\n";
+			int code = i+1;
+			Board target = board.get(i);
+			info += "[" + code + "] " + target.getTitle() + " : " + target.getContents();
+		}
+		return info;
 	}
 	
 }
