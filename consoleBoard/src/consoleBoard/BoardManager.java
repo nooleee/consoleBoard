@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BoardManager {
+public class BoardManager extends Board {
 	private ArrayList<Board> list;
 	private Map<String, Board> boardData = new HashMap<>(); // boardData = (title/contents, title/contents, ..)
 	
@@ -34,15 +34,19 @@ public class BoardManager {
 		return new Board();
 	}
 	
-	public void modifyTitle() {
+	public void modifyTitle(String title) {
 		
 	}
 	
-	public void modifyContents() {
+	public void modifyContents(String contents) {
 		
 	}
 	
 	public void deleteBoard() {
 		
+	}
+	
+	public int getBoardSize() {
+		return list.size();
 	}
 }
