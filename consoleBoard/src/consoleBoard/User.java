@@ -46,7 +46,7 @@ public class User {
 	}
 	
 	public Board getBoardByCode(int code) {
-		Board target = board.get(code);
+		Board target = board.get(code-1);
 		if(target.getCode() != 0)
 				return target;
 		return new Board();
