@@ -52,7 +52,6 @@ public class Console {
 		System.out.println("[3]로그인");
 		System.out.println("[4]로그아웃");
 		System.out.println("[5]게시판");
-		System.out.println("[6]파일");
 		System.out.println("[0]종료");
 	}
 	
