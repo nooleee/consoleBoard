@@ -154,10 +154,11 @@ public class Console {
 	
 	private void printBoardAll() {
 		System.out.println("=============");
+		int cnt = 1;
 		for(int i = 0; i <= boardManager.getBoardSize(); i++) {
 			Board target = boardManager.getBoardAll().get(i+1);
 			if(target != null) {
-				System.out.printf("[%d] ", i+1);
+				System.out.printf("[%d] ", cnt++);
 				System.out.print(target);
 			}
 		}
