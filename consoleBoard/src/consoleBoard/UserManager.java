@@ -75,6 +75,7 @@ public class UserManager extends User {
 		return this.list.size();
 	}
 	
+	
 	public ArrayList<User> findUserAll() {
 		ArrayList<User> copy = new ArrayList<>();
 		for(User user : list) {

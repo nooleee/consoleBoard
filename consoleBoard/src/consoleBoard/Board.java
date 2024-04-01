@@ -41,7 +41,7 @@ public class Board {
 	@Override
 	public String toString() {
 		String info = "";
-			info += title + " : " + contents;
+			info += title;
 			info += "\n";
 		return info;
 	}
