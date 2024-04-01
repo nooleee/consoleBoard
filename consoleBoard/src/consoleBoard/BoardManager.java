@@ -3,7 +3,7 @@ package consoleBoard;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BoardManager extends Board {
+public class BoardManager {
 //	private ArrayList<Board> list;
 	private int count;
 	private Map<Integer, Board> boardData = new HashMap<>(); // boardData = (title/contents, title/contents, ..)
@@ -26,7 +26,7 @@ public class BoardManager extends Board {
 	}
 	
 	public boolean findBoardByTitle(int code) {
-		for(int i = 0; i < count; i++) {
+		for(int i = 1; i <= count; i++) {
 			Board target = boardData.get(i);
 			if(target.getCode() == code)
 				return true;
@@ -34,19 +34,17 @@ public class BoardManager extends Board {
 		return false;
 	}
 	
-	public Board getBoardByTilte(int code) {
-		for(int i = 0; i < count; i++) {
-			Board target = boardData.get(i);
-			if(target.getCode() == code)
+	public Board getBoardByCode(int code) {
+		Board target = boardData.get(code);
+		if(target.getCode() != 0)
 				return target;
-		}
 		return new Board();
 	}
 	
-	public void modifyTitle(int code, String title) {
+	public void modifyTitle(int code, String title, Board board) {
 		String contents = "";
-		Board target = boardData.get(code);
-		contents = target.getContents();
+//		Board target = boardData.get(code);
+		contents = board.getContents();
 		
 		
 		Board newBoard = new Board(title, contents, code);
@@ -63,18 +61,26 @@ public class BoardManager extends Board {
 	}
 	
 	public void deleteBoard(Board board) {
-		for(int i = 0; i < count; i++) {
-			if(boardData.get(i).equals(board))
-				boardData.remove(i);
-		}
+		int num = getBoardCode(board);
+		boardData.remove(num);
+		count--;
 	}
 	
 	public void deleteBoardAll(int code) {
-		for(int i = 0; i < count; i++) {
+		for(int i = 1; i < count; i++) {
 			Board target = boardData.get(i);
 			if(target.getCode() == code)
 				boardData.remove(i);
 		}
+	}
+	
+	public int getBoardCode(Board board) {
+		for(int i = 1; i <= count; i++) {
+			Board target = boardData.get(i);
+			if(target.getTitle().equals(board.getTitle()) && target.getContents().equals(board.getContents()))
+				return i;
+		}
+		return -1;
 	}
 	
 //	public Map<Integer, Board> getBoardAll() {
