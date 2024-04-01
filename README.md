@@ -14,7 +14,3 @@
 >Class Diagram (UML)
 >
 ![diagram](https://github.com/nooleee/consoleBoard/blob/master/Console.jpg?raw=true) <br>
-
-> Demo
-> 
-![diagram](https://github.com/nooleee/ZombieGame/blob/master/image/ZombieGame.gif?raw=true)
