@@ -133,6 +133,7 @@ public class Console {
 	}
 	
 	private void printBoardMenu() {
+		printBoardAll();
 		System.out.println("[1]추가하기");
 		System.out.println("[2]수정하기");
 		System.out.println("[3]삭제하기");
@@ -156,8 +157,10 @@ public class Console {
 		System.out.println("=============");
 		for(int i = 0; i < boardManager.getBoardSize(); i++) {
 			Board target = boardManager.getBoardAll().get(i+1);
-			System.out.printf("[%d] ", i+1);
-			System.out.println(target);
+			if(target != null) {
+				System.out.printf("[%d] ", i+1);
+				System.out.print(target);
+			}
 		}
 		System.out.println("=============");
 	}
@@ -215,12 +218,19 @@ public class Console {
 
 	private void delete() {
 		printLogBoard();
-		int num = inputNumber("삭제를 원하는 게시물 번호");
-		boardManager.deleteBoard(num);
+		int num = inputNumber("삭제를 원하는 게시물 번호")-1;
+		User user = userManager.getUserByUserCode(log);
+		Board board = user.getBoardByCode(num);
+		boardManager.deleteBoard(board);
+		
+		printBoardAll();
+		ArrayList<Board> boards = userManager.getUserByUserCode(log).getBoard();
+		boards.remove(num);
+		System.out.println("게시물 삭제 완료");
 	}
 	
 	private void checkBoard() {
-		
+		printLogBoard();
 	}
 	
 	private void runBoardMenu(int choice) {
