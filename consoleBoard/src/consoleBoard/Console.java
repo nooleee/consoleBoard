@@ -248,7 +248,17 @@ public class Console {
 	}
 	
 	private void checkBoard() {
-		printLogBoard();
+		printSelectBoard();
+	}
+	
+	private void printSelectBoard() {
+		printBoardAll();
+		int code = inputNumber("조회를 원하는 게시물 번호");
+		if(code < 1 || code > boardManager.getBoardSize()) 
+			return;
+		
+		Board target = boardManager.getBoardByCode(code);
+		System.out.printf("제목 : %s\n내용 : %s\n", target.getTitle(), target.getContents());
 	}
 	
 	private void runBoardMenu(int choice) {
