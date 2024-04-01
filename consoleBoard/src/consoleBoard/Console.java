@@ -15,7 +15,6 @@ public class Console {
 	private final int LOGIN = 3;
 	private final int LOGOUT = 4;
 	private final int BOARD = 5;
-	private final int FILE = 6;
 	private final int EXIT = 0;
 	
 	private final int ADD = 1;
@@ -155,7 +154,7 @@ public class Console {
 	
 	private void printBoardAll() {
 		System.out.println("=============");
-		for(int i = 0; i < boardManager.getBoardSize(); i++) {
+		for(int i = 0; i <= boardManager.getBoardSize(); i++) {
 			Board target = boardManager.getBoardAll().get(i+1);
 			if(target != null) {
 				System.out.printf("[%d] ", i+1);
@@ -175,9 +174,16 @@ public class Console {
 		printLogBoard();
 		int num = inputNumber("수정을 원하는 게시물 번호");
 		
+		User user = userManager.getUserByUserCode(log);
+		if(num < 0 || num > user.getBoardSize())
+			return;
+		
 		String title = inputString("바꿀 제목");
 		
-		boardManager.modifyTitle(num, title);
+		Board board = user.getBoardByCode(num);
+		int target = boardManager.getBoardCode(board);
+		
+		boardManager.modifyTitle(target, title, board);
 		
 		ArrayList<Board> boards = userManager.getUserByUserCode(log).getBoard();
 		boards.get(num-1).setTitle(title);
@@ -188,9 +194,17 @@ public class Console {
 		printLogBoard();
 		int num = inputNumber("수정을 원하는 게시물 번호");
 		
+		User user = userManager.getUserByUserCode(log);
+		if(num < 0 || num > user.getBoardSize())
+			return;
+		
 		String contents = inputString("바꿀 내용");
 		
-		boardManager.modifyContents(num, contents);
+		Board board = user.getBoardByCode(num);
+		int target = boardManager.getBoardCode(board);
+		
+		boardManager.modifyContents(target, contents);
+		
 		ArrayList<Board> boards = userManager.getUserByUserCode(log).getBoard();
 		boards.get(num-1).setContents(contents);
 		System.out.println("내용 수정 완료");
@@ -218,14 +232,17 @@ public class Console {
 
 	private void delete() {
 		printLogBoard();
-		int num = inputNumber("삭제를 원하는 게시물 번호")-1;
+		int num = inputNumber("삭제를 원하는 게시물 번호");
 		User user = userManager.getUserByUserCode(log);
+		if(num < 0 || num > user.getBoardSize())
+			return;
+		
 		Board board = user.getBoardByCode(num);
 		boardManager.deleteBoard(board);
 		
 		printBoardAll();
 		ArrayList<Board> boards = userManager.getUserByUserCode(log).getBoard();
-		boards.remove(num);
+		boards.remove(num-1);
 		System.out.println("게시물 삭제 완료");
 	}
 	
@@ -264,7 +281,6 @@ public class Console {
 			logout();
 		else if(select == BOARD && !checkLog())
 			board();
-//		else if(select == FILE)
 		else if(select == EXIT)
 			isRun = false;
 	}
