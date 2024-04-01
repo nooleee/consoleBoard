@@ -45,6 +45,13 @@ public class User {
 		return board.size();
 	}
 	
+	public Board getBoardByCode(int code) {
+		Board target = board.get(code);
+		if(target.getCode() != 0)
+				return target;
+		return new Board();
+	}
+	
 	
 	public User clone() {
 		return new User(this.id, this.password, this.board, this.code);
@@ -52,7 +59,7 @@ public class User {
 	
 	@Override
 	public String toString() {
-		String info = String.format("%s(%d)\n", this.id, this.code);
+		String info = String.format("%s(%d)", this.id, this.code);
 		
 		for(int i = 0; i < board.size(); i++) {
 			info += "\n";
