@@ -1,5 +1,6 @@
 package consoleBoard;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,31 +67,27 @@ public class BoardManager {
 		count--;
 	}
 	
-	public void deleteBoardAll(int code) {
-		for(int i = 1; i < count; i++) {
-			Board target = boardData.get(i);
-			if(target.getCode() == code)
-				boardData.remove(i);
+	public void deleteBoardAll(ArrayList<Board> board) {
+		for(int i = 0; i < board.size(); i++) {
+			Board temp = board.get(i);
+			for(int j = 1; j <= count; j++) {
+				Board target = boardData.get(j);
+				if(target != null && target.getTitle().equals(temp.getTitle()) && target.getContents().equals(temp.getContents())) {
+					boardData.remove(j);
+					count--;
+				}
+			}
 		}
 	}
 	
 	public int getBoardCode(Board board) {
 		for(int i = 1; i <= count; i++) {
 			Board target = boardData.get(i);
-			if(target.getTitle().equals(board.getTitle()) && target.getContents().equals(board.getContents()))
+			if(target != null && target.getTitle().equals(board.getTitle()) && target.getContents().equals(board.getContents()))
 				return i;
 		}
 		return -1;
 	}
-	
-//	public Map<Integer, Board> getBoardAll() {
-//		Map<Integer, Board> copy = new HashMap<>();
-//		for(int i = 0; i < count; i++) {
-//			Board board = boardData.get(i+1);
-//			copy.put;
-//		}
-//		return copy;
-//	}
 	
 	public int getBoardSize() {
 		return count;

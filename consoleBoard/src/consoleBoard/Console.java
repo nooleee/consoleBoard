@@ -95,8 +95,11 @@ public class Console {
 		String password = inputString("비밀번호 확인");
 		User user = userManager.findUserByPassword(password);
 		if(user.getCode() != 0) {
+			ArrayList<Board> target = user.getBoard();
+//			boardManager.deleteBoardAll(target);
 			userManager.deleteUser(user);
 			System.out.println("회원탈퇴 완료");
+			log = -1;
 		}
 		else
 			System.err.println("비밀번호를 다시 확인하세요");
