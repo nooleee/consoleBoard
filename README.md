@@ -14,7 +14,7 @@
 
 >Class Diagram (UML)
 >
-![diagram](https://github.com/nooleee/consoleBoard/blob/master/Console%20(1).jpg?raw=true) <br>
+![diagram](https://github.com/nooleee/consoleBoard/blob/master/image/Console%20(1).jpg?raw=true) <br>
 
 > Demo
 > 
