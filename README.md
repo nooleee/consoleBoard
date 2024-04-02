@@ -18,4 +18,4 @@
 
 > Demo
 > 
-![diagram]()
+![diagram](https://github.com/nooleee/consoleBoard/blob/master/New-Project-Clipchamp%EB%A1%9C-%EC%A0%9C%EC%9E%91.gif?raw=true)
